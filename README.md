@@ -1,4 +1,4 @@
-# Laboratorio 5 ARSW
+# Laboratorio 6 ARSW
 # BluePrint HeavyClient
 
 ### Integrantes:
