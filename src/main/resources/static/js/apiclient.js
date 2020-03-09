@@ -16,6 +16,36 @@ var apiclient = (function(){
             		callback(null, data);
             	}
             });
+        },
+        updatePoints:function(blueprint,calback){
+        	var promise = $.ajax({
+        		type:"PUT",
+        		url:"/blueprints/"+blueprint.author+"/"+blueprint.name,
+        		data:JSON.stringify(blueprint),
+        		contentType:"application/json",
+        	});
+        	promise.then(
+        			function(){
+        				apiclient.getBlueprintsByAuthor(blueprint.author,calback);
+        			},
+        			function(){
+        				alert("No fue posible realizar la actualizacion");
+        			}
+        	);
+        },addBlueprint:function(blueprint,calback){
+        	var promise = $.post({
+        		url:"/blueprints",
+        		data:JSON.stringify(blueprint),
+        		contentType:"application/json"
+        	});
+        	promise.then(
+        		function(){
+        			calback(null);
+        		},
+        		function(){
+        			calback("");
+        		}
+        	);
         }
     }
 })();
