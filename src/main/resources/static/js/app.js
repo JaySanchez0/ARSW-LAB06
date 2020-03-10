@@ -69,6 +69,9 @@ var app = (function(){
 		update.click(function(){
 			app.updatePoints(selectedBlueprint);
 		});
+		dele.click(function(){
+			app.deleteCanvas(selectedBlueprint);
+		});
 	};
 	var create = function(error){
 		if(error!=null){
@@ -84,6 +87,11 @@ var app = (function(){
 		cont.append(dele);
 		update.click(function(){
 			app.updatePoints(selectedBlueprint);
+
+		});
+		dele.click(function(){
+			app.deleteCanvas(selectedBlueprint);
+
 		});
 	};
     return {
@@ -122,6 +130,12 @@ var app = (function(){
 		},createBlueprint:function(name){
 			selectedBlueprint = {"name":name,"author":author,"points":[]};
 			api.addBlueprint(selectedBlueprint,create);
+		},
+		deleteCanvas:function(blueprint){
+			api.deleteCanvas(blueprint,getBlueprintsByAuthor);
+			api.updatePoints(blueprint,getBlueprintsByAuthor);
+
 		}
+		
     };
  })();

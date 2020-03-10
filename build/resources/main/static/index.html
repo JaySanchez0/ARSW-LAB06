@@ -3,7 +3,7 @@
         <title>Blueprints</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
         <script src="/webjars/bootstrap/4.1.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet"
@@ -27,14 +27,49 @@
     <h1 id="AuthorName"></h1>
     <br></br>
     <div class="container">
+    	<div class="row">
+    		<div class="col"></div>
+    		<div class="col"></div>
+    		<div class="col"><button id="new" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style='display:none;'>Create new Blueprint</button></div>
+    	</div>
         <div class="row">
             <div id="result" class="col-sm" style="width:480px; margin:0px; padding:0px;"></div>
             <div class="col-sm">
             <h1 id="blueprint"></h1>
-            <canvas id="drawer" />
+            <canvas id="drawer"></canvas>
+            <div id="buttons"></div>
             </div>
+           
+        </div>
+        <div class="row">
+        	<div class="col" id="total"></div>
         </div>
     </div>
+    
+    
+    
+	    <!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Blueprint name</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		          <input id="bluename" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary" onclick="app.createBlueprint($('#bluename').val())" data-dismiss="modal">Create</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+    
+    
 
     </body>
 </html>

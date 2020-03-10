@@ -17,6 +17,28 @@ var apiclient = (function(){
             	}
             });
         },
+	
+	      deleteCanvas:function(blueprint,callback){
+        	var promise = $.ajax({
+        		type:"DELETE",
+        		url:"/blueprints/"+blueprint.author+"/"+blueprint.name,
+        		data:JSON.stringify(blueprint),
+        		contentType:"application/json",
+        	});
+        	promise.then(
+        			function(){
+        				console.info("OK");
+        			},
+        			function(){
+        				 console.info("ERROR");
+        			}
+        	);
+
+	return promise;
+
+        },
+
+
         updatePoints:function(blueprint,calback){
         	var promise = $.ajax({
         		type:"PUT",
@@ -32,7 +54,10 @@ var apiclient = (function(){
         				alert("No fue posible realizar la actualizacion");
         			}
         	);
-        },addBlueprint:function(blueprint,calback){
+
+        },
+
+	addBlueprint:function(blueprint,calback){
         	var promise = $.post({
         		url:"/blueprints",
         		data:JSON.stringify(blueprint),

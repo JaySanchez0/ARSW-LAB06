@@ -16,6 +16,61 @@ var apiclient = (function(){
             		callback(null, data);
             	}
             });
+        },
+	
+	      deleteCanvas:function(name,author,callback){
+        	var promise = $.ajax({
+        		type:"DELETE",
+        		url:"/blueprints/"+blueprint.author+"/"+blueprint.name,
+        		data:JSON.stringify(blueprint),
+        		contentType:"application/json",
+        	});
+        	promise.then(
+        			function(){
+        				console.info("OK");
+        			},
+        			function(){
+        				 console.info("ERROR");
+        			}
+        	);
+
+	return promise;
+
+        },
+
+
+        updatePoints:function(blueprint,calback){
+        	var promise = $.ajax({
+        		type:"PUT",
+        		url:"/blueprints/"+blueprint.author+"/"+blueprint.name,
+        		data:JSON.stringify(blueprint),
+        		contentType:"application/json",
+        	});
+        	promise.then(
+        			function(){
+        				apiclient.getBlueprintsByAuthor(blueprint.author,calback);
+        			},
+        			function(){
+        				alert("No fue posible realizar la actualizacion");
+        			}
+        	);
+
+        },
+
+	addBlueprint:function(blueprint,calback){
+        	var promise = $.post({
+        		url:"/blueprints",
+        		data:JSON.stringify(blueprint),
+        		contentType:"application/json"
+        	});
+        	promise.then(
+        		function(){
+        			calback(null);
+        		},
+        		function(){
+        			calback("");
+        		}
+        	);
         }
     }
 })();
