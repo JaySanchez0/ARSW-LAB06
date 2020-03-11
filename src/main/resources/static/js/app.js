@@ -94,6 +94,17 @@ var app = (function(){
 
 		});
 	};
+	var cleardata = function(author){
+		app.updatePlane(author);
+		$("#buttons").html("");
+		$("#blueprint").html("");
+		var canvas = document.getElementById("drawer");
+		var ctx = canvas.getContext("2d");
+		ctx.beginPath();
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
+		ctx.restore();
+	};
     return {
     	updatePlane:function(authorName){
     		app.setName(authorName);
@@ -132,9 +143,7 @@ var app = (function(){
 			api.addBlueprint(selectedBlueprint,create);
 		},
 		deleteCanvas:function(blueprint){
-			api.deleteCanvas(blueprint,getBlueprintsByAuthor);
-			api.updatePoints(blueprint,getBlueprintsByAuthor);
-
+			api.deleteCanvas(blueprint,cleardata);
 		}
 		
     };

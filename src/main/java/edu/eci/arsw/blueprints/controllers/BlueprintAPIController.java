@@ -85,8 +85,8 @@ public class BlueprintAPIController {
         }
     }
     
-    @RequestMapping(path = "/author/{name}",method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteColas(@PathVariable ("author") String author, @PathVariable ("name") String name) {
+    @RequestMapping(path = "/{author}/{name}",method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteColas(@PathVariable String author, @PathVariable String name) {
     try {
     	bps.deleteBlueprint(author,name);
         return new ResponseEntity<>(HttpStatus.ACCEPTED); 

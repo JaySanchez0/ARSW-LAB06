@@ -28,13 +28,12 @@ var apiclient = (function(){
         	promise.then(
         			function(){
         				console.info("OK");
+        				callback(blueprint.author);
         			},
         			function(){
         				 console.info("ERROR");
         			}
         	);
-
-	return promise;
 
         },
 
